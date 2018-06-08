@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="2"
+    tools:context="com.example.william.sxcattendance.SplashScreen.Splash">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/sxc_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/college_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:transitionName="text"
+                />
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:id="@+id/app_text"
+                android:layout_below="@id/sxc_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sxc_attendance_application"
+                style="@style/SplashText"
+                android:padding="8dp"
+                android:transitionName="image"
+
+                />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight=".6">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/sxc_progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:theme="@style/progressBarTheme"
+                android:indeterminate="false"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:id="@+id/loadingText"
+                android:layout_below="@id/sxc_progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/SplashLoadingText"
+                android:text="Loading..."
+                />
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

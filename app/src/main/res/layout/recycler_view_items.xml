@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ToggleButton
+        android:id="@+id/toogle_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="a"
+        android:textOn=""
+        android:textOff=""
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:background="@drawable/square"/>
+</LinearLayout>

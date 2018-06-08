@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3193D4</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="PrimaryTextColor">#206492</color>
+    <color name="ProgressBarColor">#829AFE</color>
+    <color name="loginBgColor">#3296D8</color>
+
+    <color name="present">#10AC84</color>
+    <color name="absent">#EE5253</color>
+    <color name="textColor">#2E86DE</color>
+</resources>
