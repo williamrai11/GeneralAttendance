@@ -22,7 +22,7 @@ public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBac
     @Override
     public void access(String email,String password) {
         if (model!=null) {
-            if(email.equals("") && password.equals("")){
+            if(email.equals("") || password.equals("")){
                 view.showIfEmptyCredentials();
             }else {
                 model.getCredentials(email, password, this);
@@ -33,9 +33,25 @@ public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBac
 
 
     @Override
+    public void loading() {
+        if (view!=null && model!=null){
+            view.showProgress();
+        }
+
+    }
+
+    @Override
     public void onSuccess() {
         if (view!=null){
+            view.hideProgress();
             view.startActivity();
+        }
+    }
+
+    @Override
+    public void hide() {
+        if (view!=null){
+            view.hideProgress();
         }
     }
 

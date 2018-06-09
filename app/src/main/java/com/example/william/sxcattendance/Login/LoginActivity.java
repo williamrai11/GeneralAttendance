@@ -1,6 +1,7 @@
 package com.example.william.sxcattendance.Login;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
@@ -25,13 +26,19 @@ import com.example.william.sxcattendance.SelectionPage.SelectionPageActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,Contract.View {
 
-    private ImageView logo;
+    private ImageView logo,animation;
     private EditText username, password;
-    private TextView forgot_password;
+    private TextView forgot_password,loading_text;
     private Button login;
 
     private LoginPresenter loginPresenter;
     private NetworkCalls networkCalls;
+
+
+    private AnimationDrawable animationDrawable;
+    private Animation blinkAnimation;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +53,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginPresenter.set();
 
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.alp);
+        blinkAnimation = AnimationUtils.loadAnimation(this,R.anim.blink);
+
         logo.setAnimation(animation);
         username.setAnimation(animation);
         password.setAnimation(animation);
         forgot_password.setAnimation(animation);
         logo.setAnimation(animation);
-
         login.setOnClickListener(this);
 
     }
@@ -59,11 +67,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void initialize() {
         logo = findViewById(R.id.ImageLogo);
+        loading_text = findViewById(R.id.loading_login);
         username = findViewById(R.id.user_name);
         password = findViewById(R.id.password);
         forgot_password = findViewById(R.id.forget_password);
         login = findViewById(R.id.login);
         networkCalls = new NetworkCalls();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 
@@ -102,5 +117,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void showIfEmptyCredentials() {
         Toast.makeText(getApplicationContext(),"Some fields are missing!! Please fill up all the fields",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showProgress() {
+        logo.setAnimation(blinkAnimation);
+        loading_text.setAnimation(blinkAnimation);
+
+    }
+
+    @Override
+    public void hideProgress() {
+        blinkAnimation.cancel();
     }
 }

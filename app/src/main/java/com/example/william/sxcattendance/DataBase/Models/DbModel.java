@@ -30,6 +30,18 @@ public class DbModel {
         private String hod;
         private List<SemesterBean> Semester;
 
+        public void setHod(String hod) {
+            this.hod = hod;
+        }
+
+        public List<SemesterBean> getSemester() {
+            return Semester;
+        }
+
+        public void setSemester(List<SemesterBean> semester) {
+            Semester = semester;
+        }
+
         public int getId() {
             return id;
         }
@@ -59,13 +71,7 @@ public class DbModel {
         }
         }
 
-        public List<SemesterBean> getSemester() {
-            return Semester;
-        }
 
-        public void setSemester(List<SemesterBean> Semester) {
-            this.Semester = Semester;
-        }
 
         public static class SemesterBean {
             /**
@@ -209,4 +215,4 @@ public class DbModel {
             }
         }
     }
-}
+

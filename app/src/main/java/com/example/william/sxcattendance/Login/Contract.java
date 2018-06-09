@@ -8,6 +8,8 @@ public interface Contract {
         public void showToast(String message);
         public void startActivity();
         public void showIfEmptyCredentials();
+        public void showProgress();
+        public void hideProgress();
 
     }
 
@@ -24,7 +26,9 @@ public interface Contract {
         public void getCredentials(String email,String password,CallBack callBack);
 
         interface CallBack{
+            public void loading();
             public void onSuccess();
+            public void hide();
             public void onCredentialError(String message);
         }
 
