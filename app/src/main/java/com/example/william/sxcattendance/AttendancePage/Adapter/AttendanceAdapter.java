@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,18 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.example.william.sxcattendance.AttendancePage.Contract;
+import com.example.william.sxcattendance.AttendancePage.DataModel.StudentsModel;
 import com.example.william.sxcattendance.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.sephiroth.android.library.tooltip.Tooltip;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.CustomViewHolder> {
 
     private LayoutInflater inflater;
-    private ArrayList<String> studentNames;
+    private List<StudentsModel> studentNames;
     private Context context;
     private int numbers = 1;
     private int x;
@@ -31,7 +34,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
 
 
     public AttendanceAdapter(Context context,
-                             ArrayList<String> studentNames,
+                             List<StudentsModel> studentNames,
                              Contract.View.setValues setValues,
                              int currentAbsent,
                              int currentPresent){
@@ -56,16 +59,26 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.setToogle(studentNames.get(position));
 
-        x = numbers++;
-        holder.toggleButton.setText(String.valueOf(position));
+        holder.setToogle(studentNames.get(position).getFirst_name()+" "+studentNames.get(position).getLast_name());
 
-        if (x == studentNames.size()){
-            x = 1;
+
+        holder.toggleButton.setText(String.valueOf(numbers++));
+
+        if (numbers++ == 0){
+            int xx = position;
+            holder.toggleButton.setTextOn(String.valueOf(++xx));
+            holder.toggleButton.setChecked(true);
+            Log.d("abcd", "onBindViewHolder: asd");
+        }else {
+            int xx = position;
+            holder.toggleButton.setTextOff(String.valueOf(++xx));
+            holder.toggleButton.setChecked(false);
+            Log.d("test", "onBindViewHolder: asd");
+
         }
 
-        holder.showPopUpStudentName(studentNames.get(position));
+        holder.showPopUpStudentName(studentNames.get(position).getFirst_name()+" "+studentNames.get(position).getLast_name());
     }
 
     @Override
@@ -75,13 +88,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
 
     @Override
     public int getItemViewType(int position) {
-        return x;
+        return position;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return x;
-    }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 

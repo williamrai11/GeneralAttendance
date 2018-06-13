@@ -1,15 +1,21 @@
 package com.example.william.sxcattendance.Login.MVP;
 
+import android.content.Context;
+
 import com.example.william.sxcattendance.Login.Contract;
+import com.example.william.sxcattendance.Network.NetworkCalls;
 
 public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBack {
     Contract.View view;
     Contract.Model model;
+    NetworkCalls networkCalls;
+    Context context;
 
 
-    public LoginPresenter(Contract.View view, Contract.Model model){
+    public LoginPresenter(Contract.View view, Contract.Model model,Context context){
         this.model = model;
         this.view = view;
+        networkCalls = new NetworkCalls(context);
     }
 
     @Override
@@ -31,6 +37,11 @@ public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBac
         }
     }
 
+    @Override
+    public void getDepartmentDatas() {
+        networkCalls.getDepartmentDatas(this);
+    }
+
 
     @Override
     public void loading() {
@@ -43,8 +54,8 @@ public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBac
     @Override
     public void onSuccess() {
         if (view!=null){
-            view.hideProgress();
-            view.startActivity();
+
+            view.runNetworkCalls();
         }
     }
 
@@ -59,5 +70,13 @@ public class LoginPresenter implements Contract.Presenter,Contract.Model.CallBac
     public void onCredentialError(String message) {
         view.showToast(message);
 
+    }
+
+    @Override
+    public void onSuccessResponse() {
+        if (view!=null){
+            view.hideProgress();
+            view.startActivity();
+        }
     }
 }

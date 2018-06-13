@@ -30,6 +30,7 @@ public final class DbContract {
         public static final String id = BaseColumns._ID;
         public static final String NAME_OF_DEPARTMENT = "name_of_department";
         public static final String HOD =  "hod";
+        public static final String CODE = "code";
 
       /*  public static final String SQL_CREATE_TABLE = "Create table department (\n" +
                 "\t_id integer primay key,\n" +
@@ -40,6 +41,7 @@ public final class DbContract {
         public static final String SQL_CREATE_TABLE = "create table department ( \n" +
                 "\t\t_id integer primary key,\n" +
                 "\t\tname_of_department text,\n" +
+                "\t\tcode integer,\n"+
                 "\t\thod text )";
 
 
@@ -184,14 +186,14 @@ public final class DbContract {
         public static final String TABLE_NAME = "students";
 
         public static final String id = BaseColumns._ID;
-        public static final String STUDENT_FNAME = "student_fname";
-        public static final String STUDENT_MNAME = "student_mname";
-        public static final String STUDENT_LNAME = "student_lname";
+        public static final String STUDENT_FNAME = "first_name";
+        public static final String STUDENT_MNAME = "middle_name";
+        public static final String STUDENT_LNAME = "last_name";
         public static final String CONTACT = "contact";
         public static final String DEPARTMENT = "department";
         public static final String SEMESTER = "semester";
 
-        public static final String SQL_CREATE_TABLE = "create table studentes (\n" +
+        public static final String SQL_CREATE_TABLE = "create table students (\n" +
                 "\t\t_id integer primary key,\n" +
                 "\t\tfirst_name text,\n" +
                 "\t\tmiddle_name text,\n" +

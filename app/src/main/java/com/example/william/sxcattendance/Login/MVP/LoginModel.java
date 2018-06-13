@@ -19,6 +19,7 @@ public class LoginModel implements Contract.Model {
     @Override
     public void getCredentials(String email, String password, final CallBack callBack) {
 
+        callBack.loading();
 
         ApiInterface service = HttpService.createService(ApiInterface.class);
         service.login(email,password).enqueue(new Callback<loginModel>() {

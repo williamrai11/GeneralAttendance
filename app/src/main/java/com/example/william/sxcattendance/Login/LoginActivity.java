@@ -1,5 +1,6 @@
 package com.example.william.sxcattendance.Login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,11 +34,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button login;
 
     private LoginPresenter loginPresenter;
-    private NetworkCalls networkCalls;
 
 
     private AnimationDrawable animationDrawable;
     private Animation blinkAnimation;
+
+    private ProgressDialog progressDialog;
 
 
 
@@ -49,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                   WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
-        loginPresenter = new LoginPresenter(this,new LoginModel());
+        loginPresenter = new LoginPresenter(this,new LoginModel(),this);
         loginPresenter.set();
 
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.alp);
@@ -67,12 +70,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void initialize() {
         logo = findViewById(R.id.ImageLogo);
-        loading_text = findViewById(R.id.loading_login);
         username = findViewById(R.id.user_name);
         password = findViewById(R.id.password);
         forgot_password = findViewById(R.id.forget_password);
         login = findViewById(R.id.login);
-        networkCalls = new NetworkCalls();
+
+        progressDialog = new ProgressDialog(this);
 
     }
 
@@ -103,15 +106,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void startActivity() {
-        networkCalls.get();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(LoginActivity.this,SelectionPageActivity.class));
+        startActivity(new Intent(LoginActivity.this,SelectionPageActivity.class));
 
-            }
-        },3000);
+
+    }
+
+    @Override
+    public void runNetworkCalls() {
+        loginPresenter.getDepartmentDatas();
     }
 
     @Override
@@ -121,13 +123,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void showProgress() {
-        logo.setAnimation(blinkAnimation);
-        loading_text.setAnimation(blinkAnimation);
+      progressDialog.setMessage("Logging.......");
+      progressDialog.setCancelable(false);
+      progressDialog.show();
 
     }
 
     @Override
     public void hideProgress() {
-        blinkAnimation.cancel();
+        progressDialog.dismiss();
     }
 }

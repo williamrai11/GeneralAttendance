@@ -3,13 +3,16 @@ package com.example.william.sxcattendance.SelectionPage;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.example.william.sxcattendance.DataBase.Models.SemesterModel;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Contract {
 
     public interface  View{
         public void handleEvent();
-        public void setData(ArrayList<String > semesterNames);
+        public void setData(List<SemesterModel > semesterNames);
         public void initialize();
         public void showToast(String message);
         public void startActivty(int Position);
@@ -27,7 +30,7 @@ public interface Contract {
 
     public interface Model{
         public void setDataToAdapter(ArrayList<String> datas);
-        public  ArrayList<String> getDatas (int checker);
+        public List<SemesterModel> getDatas (int checker);
 
         interface listerner{
             public void onSuccess(ArrayList<String> datas);

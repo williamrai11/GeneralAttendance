@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.william.sxcattendance.DataBase.Models.SemesterModel;
 import com.example.william.sxcattendance.R;
 import com.example.william.sxcattendance.SelectionPage.Fragments.BIMFragment;
 import com.example.william.sxcattendance.SelectionPage.Fragments.BScCsitFragment;
@@ -15,6 +16,7 @@ import com.example.william.sxcattendance.SelectionPage.MVP.SelectionModel;
 import com.example.william.sxcattendance.SelectionPage.MVP.SelectionPresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectionPageActivity extends AppCompatActivity implements Contract.View {
 
@@ -23,6 +25,7 @@ public class SelectionPageActivity extends AppCompatActivity implements Contract
     private SelectionPresenter presenter;
     private BScCsitFragment bScCsitFragment;
     private BIMFragment bimFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +80,7 @@ public class SelectionPageActivity extends AppCompatActivity implements Contract
     }
 
     @Override
-    public void setData(ArrayList<String> semesterNames ) {
+    public void setData(List<SemesterModel> semesterNames ) {
 
     }
 

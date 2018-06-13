@@ -2,18 +2,24 @@ package com.example.william.sxcattendance.SelectionPage.MVP;
 
 import android.content.Context;
 
+import com.example.william.sxcattendance.DataBase.Models.SemesterModel;
+import com.example.william.sxcattendance.DataBase.SqlQuery;
 import com.example.william.sxcattendance.SelectionPage.Adapter.CustomAdapter;
 import com.example.william.sxcattendance.SelectionPage.Contract;
 import com.example.william.sxcattendance.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SelectionModel implements Contract.Model {
 
     private Context context;
+    private SqlQuery sqlQuery;
+    private List<SemesterModel> semesterModels;
 
     public SelectionModel(Context context){
         this.context = context;
+        sqlQuery = new SqlQuery(context);
     }
 
     @Override
@@ -23,21 +29,17 @@ public class SelectionModel implements Contract.Model {
     }
 
     @Override
-    public ArrayList<String> getDatas(int checker) {
-        ArrayList<String> bscCsit = new ArrayList<>();
-        bscCsit.add("1st Semester");
-        bscCsit.add("3rd Semester");
-        bscCsit.add("5th Semester");
-        bscCsit.add("7th Semester");
-
-        ArrayList<String> bim = new ArrayList<>();
-        bim.add("1st Semester");
-        bim.add("7th Semester");
+    public List<SemesterModel> getDatas(int checker) {
+        semesterModels = new ArrayList<>();
 
         if (checker == 0){
-            return bscCsit;
+            semesterModels = sqlQuery.getSemester(1);
+
+            return semesterModels;
         }else {
-            return bim;
+            semesterModels = sqlQuery.getSemester(2);
+
+            return semesterModels;
         }
     }
 }

@@ -7,15 +7,16 @@ public interface Contract {
         public void initialize();
         public void showToast(String message);
         public void startActivity();
+        public void runNetworkCalls();
         public void showIfEmptyCredentials();
         public void showProgress();
         public void hideProgress();
-
     }
 
     public interface Presenter{
         public void set();
         public void access(String email,String password);
+        public void getDepartmentDatas();
 
 
 
@@ -30,6 +31,7 @@ public interface Contract {
             public void onSuccess();
             public void hide();
             public void onCredentialError(String message);
+            public void onSuccessResponse();
         }
 
     }
