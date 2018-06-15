@@ -20,10 +20,10 @@ public class AttendanceModel implements Contract.Model {
    }
 
    @Override
-    public List<StudentsModel> getDatas(String checker) {
+    public List<StudentsModel> getDatas(String checker,int semesterCode) {
 
 
 
-        return sqlQuery.getStudents(checker);
+        return sqlQuery.getStudents(checker,semesterCode);
     }
 }

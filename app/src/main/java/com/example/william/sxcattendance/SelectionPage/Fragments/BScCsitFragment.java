@@ -30,6 +30,7 @@ import java.util.List;
 public class BScCsitFragment extends Fragment implements Contract.View {
 
     public static final String DEPARTMENT_NAME = "department_name";
+    public static final String SEMESTER_CODE = "semesterCode";
     private FragmentPresenter fragmentPresenter;
     private ListView listView;
     private CustomAdapter adapter;
@@ -93,6 +94,7 @@ public class BScCsitFragment extends Fragment implements Contract.View {
     public void startActivty(int Position) {
         Intent intent = new Intent(getActivity(), AttendanceActivity.class);
         intent.putExtra(DEPARTMENT_NAME,list.get(Position).getDepartment());
+        intent.putExtra(SEMESTER_CODE,list.get(Position).getCode());
         startActivity(intent);
     }
 }

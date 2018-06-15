@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.william.sxcattendance.AttendancePage.Util.Helper;
 import com.example.william.sxcattendance.Login.LoginActivity;
 import com.example.william.sxcattendance.R;
 
@@ -46,6 +48,7 @@ public class Splash extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splash);
+
 
         progressBar = findViewById(R.id.sxc_progressBar);
         LoadingText = findViewById(R.id.loadingText);
@@ -84,7 +87,7 @@ public class Splash extends AppCompatActivity {
 
                 handler.post(runnable);
             }
-        },0,50);
+        },0,25);
 
     }
 

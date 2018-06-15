@@ -19,8 +19,8 @@ public class AttendancePresenter implements Contract.Presenter {
     }
 
     @Override
-    public void sendData(String name) {
-        view.setData(model.getDatas(name));
+    public void sendData(String name,int SemesterCode) {
+        view.setData(model.getDatas(name,SemesterCode));
     }
 
     @Override

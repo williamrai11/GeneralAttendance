@@ -39,6 +39,7 @@
                     >
 
                     <TextView
+                        android:id="@+id/current_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="March 10th 2018"
@@ -62,6 +63,7 @@
                             android:weightSum="2">
 
                             <TextView
+                                android:id="@+id/department_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:paddingLeft="8dp"
@@ -74,6 +76,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/semester_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="0.9"

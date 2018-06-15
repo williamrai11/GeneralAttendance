@@ -3,6 +3,7 @@ package com.example.william.sxcattendance.Network.Apis;
 
 
 import com.example.william.sxcattendance.DataBase.Models.DbModel;
+import com.example.william.sxcattendance.Network.Model.AttendanceSendModel;
 import com.example.william.sxcattendance.Network.Model.loginModel;
 import com.example.william.sxcattendance.Network.Url.UrlManager;
 
@@ -31,5 +32,8 @@ public interface ApiInterface {
 
     @GET(UrlManager.DEPARTMENT)
     Call<DbModel> getDepartmentDatas();
+
+    @POST(UrlManager.ATTENDANCE)
+    Call<ResponseBody> sendAttendance(@Body List<AttendanceSendModel> sendModel);
 
 }

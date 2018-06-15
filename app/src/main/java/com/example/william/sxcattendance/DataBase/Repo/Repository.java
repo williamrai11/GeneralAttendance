@@ -25,7 +25,7 @@ public interface Repository {
 
     interface query {
         public List<SemesterModel> getSemester(int departmentCode);
-        public List<StudentsModel> getStudents(String departmentName);
+        public List<StudentsModel> getStudents(String departmentName,int SemesterCode);
     }
 
 

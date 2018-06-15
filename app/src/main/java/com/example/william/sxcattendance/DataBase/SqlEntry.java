@@ -62,6 +62,7 @@ public class SqlEntry implements Repository {
                     studentsDatas.put(DbContract.StudentsEntry.DEPARTMENT,dbModels.getData().get(i).getSemester().get(j).getStudents().get(k).getDepartment());
                     studentsDatas.put(DbContract.StudentsEntry.STUDENT_MNAME,dbModels.getData().get(i).getSemester().get(j).getStudents().get(k).getMiddle_name());
                     studentsDatas.put(DbContract.StudentsEntry.SEMESTER,dbModels.getData().get(i).getSemester().get(j).getStudents().get(k).getSemester());
+                    studentsDatas.put(DbContract.StudentsEntry.ATTENDANCE,1);
 
                     context.getContentResolver().insert(DbContract.StudentsEntry.STUDENT_URI,studentsDatas);
 

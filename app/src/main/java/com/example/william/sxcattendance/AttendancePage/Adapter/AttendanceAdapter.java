@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 
 import com.example.william.sxcattendance.AttendancePage.Contract;
 import com.example.william.sxcattendance.AttendancePage.DataModel.StudentsModel;
+import com.example.william.sxcattendance.DataBase.SqlQuery;
 import com.example.william.sxcattendance.R;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
     private Contract.View.setValues setValues;
     private int currentAbsent;
     private int currentPresent;
+    private SqlQuery sqlQuery;
 
 
     public AttendanceAdapter(Context context,
@@ -45,6 +47,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
         this.setValues = setValues;
         this.currentAbsent = currentAbsent;
         this.currentPresent = currentPresent;
+        sqlQuery = new SqlQuery(context);
     }
 
 
@@ -60,12 +63,14 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
-        holder.setToogle(studentNames.get(position).getFirst_name()+" "+studentNames.get(position).getLast_name());
+        StudentsModel studentsModel = studentNames.get(position);
+
+        holder.setToogle(studentNames.get(position).getFirst_name()+" "+studentNames.get(position).getLast_name(),studentsModel);
 
 
         holder.toggleButton.setText(String.valueOf(numbers++));
 
-        if (numbers++ == 0){
+        if (studentsModel.getAttendance() == 0){
             int xx = position;
             holder.toggleButton.setTextOn(String.valueOf(++xx));
             holder.toggleButton.setChecked(true);
@@ -101,7 +106,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
             toggleButton = itemView.findViewById(R.id.toogle_button);
         }
 
-        public void setToogle(final String name){
+        public void setToogle(final String name, final StudentsModel studentsModel){
             toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -112,6 +117,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
                         currentAbsent++;
                         currentPresent--;
 
+                        sqlQuery.updateAttendance(studentsModel.getId(),studentsModel.getDepartment(),studentsModel.getSemester(),0);
                         setValues.setAbsentAndPresent(currentPresent,currentAbsent);
                     }else {
                         int x = getLayoutPosition();
@@ -122,6 +128,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Cu
                         currentPresent++;
                         currentAbsent--;
 
+                        sqlQuery.updateAttendance(studentsModel.getId(),studentsModel.getDepartment(),studentsModel.getSemester(),1);
                         setValues.setAbsentAndPresent(currentPresent,currentAbsent);
 
                     }

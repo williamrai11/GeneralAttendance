@@ -2,6 +2,7 @@ package com.example.william.sxcattendance.Login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
@@ -40,6 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Animation blinkAnimation;
 
     private ProgressDialog progressDialog;
+    private SharedPreferences loginSessionPrefs;
+    private SharedPreferences.Editor editor;
 
 
 
@@ -51,6 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                   WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+
+        loginSessionPrefs = getSharedPreferences("loginPrefs",0);
+        editor = loginSessionPrefs.edit();
 
         loginPresenter = new LoginPresenter(this,new LoginModel(),this);
         loginPresenter.set();
@@ -106,7 +112,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void startActivity() {
+        editor.putBoolean("isLoggedIn",true);
+        editor.apply();
         startActivity(new Intent(LoginActivity.this,SelectionPageActivity.class));
+        finish();
 
 
     }
@@ -127,6 +136,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
       progressDialog.setCancelable(false);
       progressDialog.show();
 
+    }
+
+    @Override
+    protected void onResume() {
+        boolean isLoggedIn = loginSessionPrefs.getBoolean("isLoggedIn",false);
+        if (isLoggedIn){
+            startActivity();
+        }
+        super.onResume();
     }
 
     @Override

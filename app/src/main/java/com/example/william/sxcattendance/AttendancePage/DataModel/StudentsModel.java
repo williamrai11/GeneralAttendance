@@ -6,14 +6,34 @@ public class StudentsModel {
     private String middle_name;
     private String last_name;
     private int semester;
+    private String department;
+    private int attendance;
 
 
-    public StudentsModel(int id, String first_name, String middle_name, String last_name, int semester) {
+    public StudentsModel(int id, String first_name, String middle_name, String last_name, int semester,String department,int attenance) {
         this.id = id;
         this.first_name = first_name;
         this.middle_name = middle_name;
         this.last_name = last_name;
         this.semester = semester;
+        this.department = department;
+        this.attendance = attenance;
+    }
+
+    public int getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(int attendance) {
+        this.attendance = attendance;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public int getId() {

@@ -192,6 +192,7 @@ public final class DbContract {
         public static final String CONTACT = "contact";
         public static final String DEPARTMENT = "department";
         public static final String SEMESTER = "semester";
+        public static final String ATTENDANCE = "attendance";
 
         public static final String SQL_CREATE_TABLE = "create table students (\n" +
                 "\t\t_id integer primary key,\n" +
@@ -201,6 +202,7 @@ public final class DbContract {
                 "\t\tcontact text,\n" +
                 "\t\tdepartment text,\n" +
                 "\t\tsemester integer,\n" +
+                "\t\tattendance integer,\n"+
                 "\t\tFOREIGN KEY (department) REFERENCES department ( name_of_department),\n" +
                 "\t\tFOREIGN KEY (semester) REFERENCES semester ( _id ) )";
 
